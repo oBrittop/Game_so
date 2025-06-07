@@ -5,7 +5,7 @@ import os
 
 # -- Variáveis de Diálogo --
 g = "Guanabara: "
-vc = "Você: "
+vc = "Você: " 
 d = "Desconhecido: "
 
 def tela_reset():
@@ -29,8 +29,8 @@ class Hero:
         print(f"{vc}Hm? Como assim? Do que você está falando? Espera, quem é você?")
         print(f"{d}Como assim quem sou eu? Você tá brincando comigo?")
         time.sleep(5)
-        print(f"{d}Karalho, só pode ser brincadeira, isso não pode 'tá' acontecendo agora.")
-        print(f"{vc}Você não 'tá' falando coisa com coisa... Espera, você 'tá' sangrando?")
+        print(f"{d}Karalho, só pode ser brincadeira, isso não pode tá acontecendo agora.")
+        print(f"{vc}Você não tá falando coisa com coisa... Espera, você tá sangrando?")
         time.sleep(6)
         print(f"{g}Me chamo Guanabara, cuidado por aí. Vou deixar uns itens em cima da mesa. Fica e espera a Leticia, ela vai te ajudar. Se cuida!")
         input("\nPressione Enter para continuar...")
@@ -38,7 +38,7 @@ class Hero:
         tela_reset()
         print(f"{vc}Espera! Droga, não consigo ir atrás dele, estou com muita dor.")
         print(f"{vc}O que será que rolou, afinal de contas?")
-        print(f"{"Quem karalho e Leticia ?"}")
+        print(f"Quem karalho e Leticia ?")
         input("\nPressione Enter para continuar...") 
         
         tela_reset()
@@ -183,5 +183,7 @@ class Game:
 if __name__ == "__main__":
     print("Bem vindo ao KN City")
     print("Desenvolvido por Grupo 7")
+    time.sleep(5)
+    tela_reset()
     game = Game()
     game.run()
