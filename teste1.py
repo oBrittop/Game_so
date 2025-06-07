@@ -38,10 +38,10 @@ class Hero:
         self.c_critico = 0
         self.nivel = 1
         self.nome = input("Qual sera seu nome ?")
-        print("Seja bem vindo a KN city")
+        print(f"Seja bem vindo a KN city {self.nome}!!!")
         
     def exibir_atributos_hero(self):
-        print("")
+        print("Atributos")
     
     def attack(self):
         return random.randint(5, 15)  # Dano de ataque (5-15)
@@ -52,11 +52,11 @@ class Hero:
             return random.randint(10, 20)  # Dano de magia (10-20)
         return 0  # Sem mana suficiente
     
-    def regenerate_mana(self):
-        if self.mana < 50:
-            self.mana = min(50, self.mana + 10)  # Regenera 10 de mana
-            return True
-        return False
+    # def regenerate_mana(self):
+    #     if self.mana < 50:
+    #         self.mana = min(50, self.mana + 10)  # Regenera 10 de mana
+    #         return True
+    #     return False
 
 # Classe para o Monstro
 class Monster:
@@ -72,8 +72,12 @@ class Game:
         self.hero = Hero()
         self.monster = Monster()
         self.game_over = False
-        self.hp_lock = threading.Semaphore(1)  # Protege a vida do herói
-        self.turn_lock = threading.Semaphore(1)  # Controla turnos
+
+
+            #SEMAFOROS
+        self.hp_lock = threading.Semaphore(1) 
+        self.turn_lock = threading.Semaphore(1)  
+        self.hero_mana_lock = threading.Semaphore(1)
     
     # Thread para ataque do monstro
     def monster_attack(self):
@@ -89,14 +93,17 @@ class Game:
                         self.game_over = True
                         print("Você foi derrotado!")
     
-    # Thread para regeneração de mana
+
+    # Thread para regeneracao de mana
     def mana_regeneration(self):
-        while self.hero.mana < 50 and self.hero.hp > 0 and not self.game_over:
-            time.sleep(5)  # Regenera a cada 5 segundos
-            with self.hp_lock:
+        while not self.game_over:
+            time.sleep(5)
+            if self.game_over: break
+
+            with self.hero_mana_lock: #Usando o semáforo de mana
                 if self.hero.regenerate_mana():
-                    print(f"Mana regenerada! Mana atual: {self.hero.mana}")
-    
+                    print(f"\n\n>> Mana regenerada! Mana atual: {self.hero.mana} <<\n")
+
     # Loop principal do jogo
     def run(self):
         # Inicia as threads
