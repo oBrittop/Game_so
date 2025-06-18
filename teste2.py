@@ -14,8 +14,8 @@ Armas_na_Loja = {
 }
 # Armazena nome da pocao: quantidade_cura
 Pocoes_na_Loja = {
-    "Pocao_vida": 30,
-    "Super_pocao_vida": 50
+    "Pocao_vida": 50,
+    "Super_pocao_vida": 100
 }
 
 # --- Variaveis de Dialogo ---
@@ -184,7 +184,7 @@ class Heroi:
         self.mana = self.mana_max
         self.ataque_base = 15  # Ataque base desarmado
         self.nivel = 1
-        self.moedas = 50  # Moedas iniciais
+        self.moedas = 25  # Moedas iniciais
         self.pocoes = {"Pocao_vida": 2, "Super_pocao_vida": 0}
         self.armas = {"Punhos"}
         self.arma_atual = "Punhos" # Arma padrao
@@ -252,9 +252,9 @@ class Monstro:
         return random.randint(self.ataque_monstro - 5, self.ataque_monstro + 5) # Aleatoriza ligeiramente o ataque do monstro
 
 # --- Definições dos Monstros (São modelos, instâncias serão criadas) ---
-ZUMBI_NORMAL_ESTATS = {"nome": "Zumbie Normal", "hp_maximo": 60, "ataque_monstro": 10, "moedas": 15}
-ZUMBI_POLICIAL_ESTATS = {"nome": "Zumbie Policial", "hp_maximo": 120, "ataque_monstro": 25, "moedas": 22}
-ZUMBI_MUTANTE_ESTATS = {"nome": "Zumbie Mutante", "hp_maximo": 200, "ataque_monstro": 35, "moedas": 50}
+ZUMBI_NORMAL_ESTATS = {"nome": "Zumbie Normal", "hp_maximo": 60, "ataque_monstro": 15, "moedas": 20}
+ZUMBI_POLICIAL_ESTATS = {"nome": "Zumbie Policial", "hp_maximo": 90, "ataque_monstro": 25, "moedas": 50}
+ZUMBI_MUTANTE_ESTATS = {"nome": "Zumbie Mutante", "hp_maximo": 150, "ataque_monstro": 35, "moedas": 100}
 
 
 class Jogo:
